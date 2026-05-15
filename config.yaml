@@ -1,0 +1,37 @@
+topics:
+  - "inteligência artificial cotidiano"
+  - "ChatGPT"
+  - "AI tools"
+  - "IA no trabalho"
+  - "artificial intelligence"
+
+filters:
+  max_duration_seconds: 300   # máx 5 min
+  min_duration_seconds: 15    # mín 15s
+  max_age_days: 7             # vídeos dos últimos 7 dias
+  min_score_reddit: 50        # mínimo de upvotes no Reddit
+
+sources:
+  reddit:
+    enabled: true
+    subreddits:
+      - artificial
+      - ChatGPT
+      - singularity
+      - MachineLearning
+      - tecnologia
+      - brasil
+  youtube:
+    enabled: true
+    max_results: 15
+  twitter:
+    enabled: false            # habilitar quando snscrape estiver validado
+
+ai:
+  provider: groq              # groq | ollama
+  model: llama-3.1-8b-instant # groq: llama-3.1-8b-instant | ollama: qwen3:8b
+  ollama_base_url: http://localhost:11434/v1
+
+output:
+  top_n: 10                   # quantos vídeos mostrar por rodada
+  save_json: true             # salva data/last_run.json após cada rodada
