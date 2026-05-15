@@ -55,6 +55,16 @@ def fmt_card(v: dict, i: int, total: int) -> str:
 
 
 def main():
+    required = ["TELEGRAM_TOKEN", "TELEGRAM_CHAT_ID", "GROQ_API_KEY"]
+    missing = [k for k in required if not os.environ.get(k)]
+    if missing:
+        print(f"ERRO: variáveis não encontradas no ambiente: {', '.join(missing)}")
+        print("Valores recebidos:")
+        for k in required:
+            val = os.environ.get(k, "")
+            print(f"  {k} = {'(vazio)' if not val else '(ok, ' + str(len(val)) + ' chars)'}")
+        sys.exit(1)
+
     init_db()
     config_path = Path(__file__).parent.parent / "config.yaml"
     with open(config_path, encoding="utf-8") as f:

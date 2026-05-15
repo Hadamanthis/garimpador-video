@@ -35,15 +35,6 @@ jobs:
       - name: Criar pasta data
         run: mkdir -p data
 
-      - name: Verificar secrets configurados
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          [ -z "$TELEGRAM_TOKEN" ] && echo "ERRO: TELEGRAM_TOKEN não configurado nos secrets!" && exit 1
-          [ -z "$TELEGRAM_CHAT_ID" ] && echo "ERRO: TELEGRAM_CHAT_ID não configurado nos secrets!" && exit 1
-          echo "Secrets OK."
-
       - name: Rodar digest
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
