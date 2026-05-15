@@ -20,12 +20,14 @@ from scrapers import reddit, youtube, twitter
 
 def tg_send(token: str, chat_id: str, text: str):
     url = f"https://api.telegram.org/bot{token}/sendMessage"
-    requests.post(url, json={
+    resp = requests.post(url, json={
         "chat_id": chat_id,
         "text": text,
         "parse_mode": "Markdown",
         "disable_web_page_preview": False,
     }, timeout=10)
+    if not resp.ok:
+        print(f"[telegram] ERRO ao enviar mensagem: {resp.status_code} {resp.text}")
 
 
 def fmt_card(v: dict, i: int, total: int) -> str:
